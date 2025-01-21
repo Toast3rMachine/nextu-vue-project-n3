@@ -1,5 +1,7 @@
 <script lang="ts" setup>
 import ProjectBox from '../components/ProjectBox.vue';
+import AnnouncementBox from '@/components/AnnouncementBox.vue';
+import TrendBox from '@/components/TrendBox.vue';
 
 const announcements = [
     {
@@ -79,7 +81,7 @@ const trends = [
             <div class="announcement">
                 <h4>Announcements</h4>
                 <div class="background-box">
-                    <AnnonceProject
+                    <AnnouncementBox
                     v-for="(announcement, index) in announcements"
                     :key="index"
                     :title="announcement.title"
@@ -91,7 +93,7 @@ const trends = [
             <div>
                 <h4>Trending</h4>
                 <div class="background-box trending">
-                <TrendCard
+                <TrendBox
                     v-for="(trend, index) in trends"
                     :key="index"
                     :avatar="trend.avatar"
