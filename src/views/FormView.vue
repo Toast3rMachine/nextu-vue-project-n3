@@ -1,16 +1,7 @@
 <script setup lang="ts">
-import { reactive } from 'vue'
+import { reactive, ref } from 'vue'
+import { FormulaireInscription } from '@/models/form.type';
 
-interface FormulaireInscription {
-    nom: string
-    prenom: string
-    email: string
-    sexe: string
-    institut: string
-    adresse: string
-    codePostal: string
-    ville: string
-}
 
 function handleCancel(){
     Object.assign(form,{
@@ -36,10 +27,22 @@ const form = reactive<FormulaireInscription>({
     ville: '',
 })
 
+const isSubmitted = ref(false);
+
+const validateForm = (): boolean => {
+    return Object.values(form).every((value) => value.trim() !== "");
+};
+
+
 const handleSubmit = () => {
-    console.log('Formulaire soumis :', form)
-    alert('Formulaire soumis avec succès !')
-}
+    if (validateForm()) {
+        isSubmitted.value = true;
+        alert("Formulaire soumis avec succès !");
+        console.log("Formulaire soumis :", form);
+    } else {
+        alert("Veuillez remplir tous les champs avant de valider.");
+    }
+};
 </script>
 
 <template>
